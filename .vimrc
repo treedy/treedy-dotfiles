@@ -15,6 +15,7 @@ imap jk <ESC>
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+set smartindent
 
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
@@ -55,6 +56,18 @@ set notimeout ttimeout ttimeoutlen=200
 " Use <F10> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F10>
 
+" Use modeline
+set modeline
+
+" Show a margin line
+set colorcolumn=80
+
+" Allow mouse interaction
+set mouse=a
+
+" Show invisible characters
+nmap <leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬
 
 " VUNDLE SETTINGS
 
@@ -75,12 +88,28 @@ Plugin 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
+
+" Git support with :Git* commands
 Plugin 'tpope/vim-fugitive'
+
+" F2 for file tree
 Plugin 'scrooloose/nerdtree'
+
+" Quick comment with <leader>.<space>
 Plugin 'scrooloose/nerdcommenter'
+
+" Syntax checking. Runs files through external syntax checkers and displays any
+" resulting errors to the user.
 Plugin 'scrooloose/syntastic'
+
+" Completion plugin
 Plugin 'Valloric/YouCompleteMe'
+
+" Pretty up the interface
+" Vim status bar
 Plugin 'vim-airline/vim-airline'
+" More color schemes
+Plugin 'flazz/vim-colorschemes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -93,5 +122,11 @@ map <F2> :NERDTreeToggle<CR>
 let g:NERDSpaceDelims = 1
 
 " Airline status bar confi
-"    Show top file open line
+" Show top file open line
 let g:airline#extensions#tabline#enabled = 1
+
+" Set available colors
+set t_Co=256
+
+" Set the color scheme provided by a plugin
+colorscheme twilight256
