@@ -1,4 +1,8 @@
 " Native Vim remappings and settings
+
+" Required for YCM and other tools
+set encoding=utf-8
+
 " Syntax highlighting on
 syntax on
 
@@ -71,7 +75,7 @@ set listchars=tab:▸\ ,eol:¬
 
 " VUNDLE SETTINGS
 
-" To install Vundle run 
+" To install Vundle run
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " Begin Vundle settings
 set nocompatible              " be iMproved, required
@@ -105,6 +109,9 @@ Plugin 'scrooloose/syntastic'
 " Completion plugin
 Plugin 'Valloric/YouCompleteMe'
 
+" Snippet plugin
+" Plugin 'SirVer/ultisnips'
+
 " Pretty up the interface
 " Vim status bar
 Plugin 'vim-airline/vim-airline'
@@ -114,6 +121,15 @@ Plugin 'flazz/vim-colorschemes'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" Have YCM use a different Python binary
+let g:ycm_python_binary_path = 'python3'
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Python3 completion
+autocmd FileType python setlocal omnifunc=python3complete#Complete
+
 
 " File tree toggle
 map <F2> :NERDTreeToggle<CR>
@@ -130,3 +146,11 @@ set t_Co=256
 
 " Set the color scheme provided by a plugin
 colorscheme twilight256
+
+
+" UltiSnips settings
+" better key bindings for UltiSnipsExpandTrigger
+"let g:UltiSnipsExpandTrigger = "<CR>"  " Expand the selection, don't use TAB
+"let g:UltiSnipsJumpForwardTrigger = "<tab>" " Go to next selection
+"let g:UltiSnipsJumpBackwardTrigger = "<s-tab>" " Previous selection
+
