@@ -1,0 +1,3 @@
+alias ll='ls -lFA'
+alias lh='ll -h'
+alias vi='vi -u NONE'

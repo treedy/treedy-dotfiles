@@ -94,6 +94,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+if [ -e "${HOME}/.alias" ]; then . "${HOME}/.alias"; fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/treedy/google-cloud-sdk/path.zsh.inc' ]; then . '/home/treedy/google-cloud-sdk/path.zsh.inc'; fi
@@ -101,6 +102,6 @@ if [ -f '/home/treedy/google-cloud-sdk/path.zsh.inc' ]; then . '/home/treedy/goo
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/treedy/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/treedy/google-cloud-sdk/completion.zsh.inc'; fi
 
-source ~/.fonts/*.sh
-
 source <(kubectl completion zsh)
+
+if [ -d "${HOME}/.fonts" ]; then . ${HOME}/.fonts/*.sh; fi
