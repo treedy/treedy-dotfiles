@@ -62,7 +62,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode docker)
+plugins=(git vi-mode docker colored-man-pages kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -74,11 +74,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='code'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -102,6 +102,4 @@ if [ -f '/home/treedy/google-cloud-sdk/path.zsh.inc' ]; then . '/home/treedy/goo
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/treedy/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/treedy/google-cloud-sdk/completion.zsh.inc'; fi
 
-source <(kubectl completion zsh)
-
-if [ -d "${HOME}/.fonts" ]; then . ${HOME}/.fonts/*.sh; fi
+source <(kubectl completion zsh) || true # even successful completion returns 127
