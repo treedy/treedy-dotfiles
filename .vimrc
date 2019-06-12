@@ -1,6 +1,6 @@
 " Native Vim remappings and settings
 
-" Required for YCM and other tools
+" Required for many tools
 set encoding=utf-8
 
 " Syntax highlighting on
@@ -73,63 +73,11 @@ set mouse=a
 nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
-" VUNDLE SETTINGS
-
-" To install Vundle run
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" Begin Vundle settings
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-
-" Git support with :Git* commands
-Plugin 'tpope/vim-fugitive'
-
-" F2 for file tree
-Plugin 'scrooloose/nerdtree'
-
-" Quick comment with <leader>.<space>
-Plugin 'scrooloose/nerdcommenter'
-
-" Syntax checking. Runs files through external syntax checkers and displays any
-" resulting errors to the user.
-Plugin 'scrooloose/syntastic'
-
-" Completion plugin
-Plugin 'Valloric/YouCompleteMe'
-
-" Snippet plugin
-" Plugin 'SirVer/ultisnips'
-
-" Pretty up the interface
-" Vim status bar
-Plugin 'vim-airline/vim-airline'
-" More color schemes
-Plugin 'flazz/vim-colorschemes'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-" Have YCM use a different Python binary
-let g:ycm_python_binary_path = 'python3'
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" Load the plugins
+source $HOME/.vim/plugins.vimrc
 
 " Python3 completion
 autocmd FileType python setlocal omnifunc=python3complete#Complete
-
 
 " File tree toggle
 map <F2> :NERDTreeToggle<CR>
@@ -147,10 +95,6 @@ set t_Co=256
 " Set the color scheme provided by a plugin
 colorscheme twilight256
 
-
-" UltiSnips settings
-" better key bindings for UltiSnipsExpandTrigger
-"let g:UltiSnipsExpandTrigger = "<CR>"  " Expand the selection, don't use TAB
-"let g:UltiSnipsJumpForwardTrigger = "<tab>" " Go to next selection
-"let g:UltiSnipsJumpBackwardTrigger = "<s-tab>" " Previous selection
+" YouCompleteMe options
+let g:ycm_autoclose_preview_window_after_completion = 1
 
