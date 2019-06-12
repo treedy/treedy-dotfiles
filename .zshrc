@@ -103,3 +103,11 @@ if [ -f '/home/treedy/google-cloud-sdk/path.zsh.inc' ]; then . '/home/treedy/goo
 if [ -f '/home/treedy/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/treedy/google-cloud-sdk/completion.zsh.inc'; fi
 
 source <(kubectl completion zsh) || true # even successful completion returns 127
+
+# Command line customizations
+bindkey -M viins 'jk' vi-cmd-mode
+bindkey '^R' history-incremental-search-backward
+
+# Start or connect to ssh-agent
+eval $(ssh-agent -s)
+
