@@ -1,9 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
 export WORKON_HOME=${HOME}/.virtualenv
-if [ $CLOUD_SHELL  ]; then
-  HOST=cloudshell
-fi
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -88,6 +85,22 @@ plugins+=(git npm virtualenvwrapper golang)
 # Container/DevOps plugins)
 plugins+=(docker kubectl)
 
+if [ $CLOUD_SHELL ]; then
+  HOST=cloudshell
+  source /google/google-cloud-sdk/*.zsh.inc
+else
+  source ${HOME}/google-cloud-sdk/*.zsh.inc
+fi 
+
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  PATH=$PATH:${HOME}/homebrew/bin
+  plugins+=(osx brew)
+  if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  fi
+  source ~/.iterm2_shell_integration.zsh
+fi
+
 source $ZSH/oh-my-zsh.sh
 # User configuration
 
@@ -119,10 +132,5 @@ bindkey '^R' history-incremental-search-backward
 # Do not share history across prompts
 unsetopt sharehistory
 
-# tell ZSH where to put the .zcompdump file(s)
-# compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
+PATH=$PATH:$HOME/bin:$HOME/google-cloud-sdk/bin
 
-source /google/google-cloud-sdk/*.zsh.inc
-# source <(kubectl completion zsh)
-
-PATH=$PATH:$HOME/bin
