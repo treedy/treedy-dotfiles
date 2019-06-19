@@ -107,7 +107,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/syntastic'
 
 " Completion plugin
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 
 " Snippet plugin
 " Plugin 'SirVer/ultisnips'
