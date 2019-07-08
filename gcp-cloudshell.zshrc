@@ -1,3 +1,5 @@
+export PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
 export WORKON_HOME=${HOME}/.virtualenv
@@ -90,10 +92,11 @@ if [ $CLOUD_SHELL ]; then
   source /google/google-cloud-sdk/*.zsh.inc
 else
   source ${HOME}/google-cloud-sdk/*.zsh.inc
+  PATH=$HOME/google-cloud-sdk/bin:$PATH
 fi 
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-  PATH=$PATH:${HOME}/homebrew/bin
+  PATH=${HOME}/homebrew/bin:${HOME}/Library/Python/2.7/bin:$PATH
   plugins+=(osx brew)
   if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -131,6 +134,3 @@ bindkey '^R' history-incremental-search-backward
 
 # Do not share history across prompts
 unsetopt sharehistory
-
-PATH=$PATH:$HOME/bin:$HOME/google-cloud-sdk/bin
-
