@@ -95,6 +95,7 @@ else
   PATH=$HOME/google-cloud-sdk/bin:$PATH
 fi 
 
+# Do Mac OS X specifics
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   PATH=${HOME}/homebrew/bin:${HOME}/Library/Python/2.7/bin:$PATH
   plugins+=(osx brew)
@@ -102,6 +103,8 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
   fi
   source ~/.iterm2_shell_integration.zsh
+
+  alias htop="sudo $(which htop)"
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -122,11 +125,9 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias vi='vim'
-alias ll='ls -lFA'
-alias lh='ll -h'
+if [ -r ${HOME}/.alias ]; then
+  source ${HOME}/.alias
+fi
 
 # Command line customizations
 bindkey -M viins 'jk' vi-cmd-mode
