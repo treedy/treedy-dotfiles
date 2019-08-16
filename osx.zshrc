@@ -1,4 +1,5 @@
-export PATH=$HOME/bin:/google/google-cloud-sdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH=$HOME/bin:$HOME/google-cloud-sdk/bin:$HOME/homebrew/bin:$HOME/Library/Python/2.7/bin
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
@@ -10,27 +11,18 @@ export WORKON_HOME=${HOME}/.virtualenv
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="candy"
 
+# Powerlevel9k theme customizations
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time vi_mode)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_VI_INSERT_MODE_STRING=""
 POWERLEVEL9K_VI_COMMAND_MODE_STRING="<<<"
-# Powerlevel9k theme customizations
-if [ -z ${DEVSHELL_CLIENT_PORT+x} ]; then # Coming from a terminal
-  # POWERLEVEL9K_MODE='nerdfont-complete' # For fancy icons
-  POWERLEVEL9K_MODE='awesome-fontconfig' # For fancy icons
-  POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="↱"
-  POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="↳ "
-  POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\uE0B4'
-  POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\uE0B6'
-else # Coming from web interface
-  POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-  POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%% "
-  POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='▒░'
-  POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='░▒'
-  # POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='▓▒░'
-  # POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='░▒▓'
-fi
+# POWERLEVEL9K_MODE='nerdfont-complete' # For fancy icons
+POWERLEVEL9K_MODE='awesome-fontconfig' # For fancy icons
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="↱"
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="↳ "
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\uE0B4'
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\uE0B6'
 POWERLEVEL9K_STATUS_OK=false
 POWERLEVEL9K_CONTEXT_REMOTE_FOREGROUND=steelblue
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND=steelblue
@@ -86,9 +78,22 @@ plugins=(colored-man-pages vi-mode)
 plugins+=(git npm virtualenvwrapper golang)
 # Container/DevOps plugins
 plugins+=(docker kubectl)
+# Mac OS X plugins
+plugins+=(osx brew)
 
-HOST=cloudshell
-source /google/google-cloud-sdk/*.zsh.inc
+source ${HOME}/google-cloud-sdk/*.zsh.inc
+PATH=$HOME/google-cloud-sdk/bin:$PATH
+
+# Homebrew completions fix
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
+# iTerm2 integrations
+source ~/.iterm2_shell_integration.zsh
+
+# htop needs to be run as root to see all procs in OS X
+alias htop="sudo $(which htop)"
 
 source $ZSH/oh-my-zsh.sh
 # User configuration
