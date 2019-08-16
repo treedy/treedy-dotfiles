@@ -84,28 +84,11 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(colored-man-pages vi-mode)
 # Programming plugins
 plugins+=(git npm virtualenvwrapper golang)
-# Container/DevOps plugins)
+# Container/DevOps plugins
 plugins+=(docker kubectl)
 
-if [ $CLOUD_SHELL ]; then
-  HOST=cloudshell
-  source /google/google-cloud-sdk/*.zsh.inc
-else
-  source ${HOME}/google-cloud-sdk/*.zsh.inc
-  PATH=$HOME/google-cloud-sdk/bin:$PATH
-fi 
-
-# Do Mac OS X specifics
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-  PATH=${HOME}/homebrew/bin:${HOME}/Library/Python/2.7/bin:$PATH
-  plugins+=(osx brew)
-  if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-  fi
-  source ~/.iterm2_shell_integration.zsh
-
-  alias htop="sudo $(which htop)"
-fi
+HOST=cloudshell
+source /google/google-cloud-sdk/*.zsh.inc
 
 source $ZSH/oh-my-zsh.sh
 # User configuration
