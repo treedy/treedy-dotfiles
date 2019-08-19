@@ -12,7 +12,7 @@ export WORKON_HOME=${HOME}/.virtualenv
 # ZSH_THEME="candy"
 
 # Powerlevel9k theme customizations
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs kubecontext)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time vi_mode)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_VI_INSERT_MODE_STRING=""
