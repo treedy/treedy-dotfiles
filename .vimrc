@@ -137,9 +137,12 @@ map <F2> :NERDTreeToggle<CR>
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
-" Airline status bar confi
+" Airline status bar config
 " Show top file open line
 let g:airline#extensions#tabline#enabled = 1
+" let g:airline_powerline_fonts = 1
+let g:airline_symbols_ascii = 1
+let g:airline_section_z = '%4l/%L:%03c'
 
 " Set available colors
 set t_Co=256
