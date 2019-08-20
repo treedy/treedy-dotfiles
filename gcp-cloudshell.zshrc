@@ -10,13 +10,14 @@ export WORKON_HOME=${HOME}/.virtualenv
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="candy"
 
+# Powerlevel9k theme customizations
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs kubecontext)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time vi_mode)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status background_jobs history time)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_VI_INSERT_MODE_STRING=""
 POWERLEVEL9K_VI_COMMAND_MODE_STRING="<<<"
-# Powerlevel9k theme customizations
-if [ -z ${DEVSHELL_CLIENT_PORT+x} ]; then # Coming from a terminal
+
+if [[ $SSH_CONNECTION != 127.0.0.1* ]]; then # Coming from a terminal
   # POWERLEVEL9K_MODE='nerdfont-complete' # For fancy icons
   POWERLEVEL9K_MODE='awesome-fontconfig' # For fancy icons
   POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="↱"
@@ -31,12 +32,21 @@ else # Coming from web interface
   # POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='▓▒░'
   # POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='░▒▓'
 fi
+
 POWERLEVEL9K_STATUS_OK=false
 POWERLEVEL9K_CONTEXT_REMOTE_FOREGROUND=steelblue
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND=steelblue
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_from_right
 POWERLEVEL9K_SHORTEN_DELIMITER=»
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+
+# PL9k folder icons
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_NETWORK_ICON=''
+POWERLEVEL9K_ETC_ICON=''
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
