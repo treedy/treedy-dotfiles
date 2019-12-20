@@ -13,7 +13,7 @@ export WORKON_HOME=${HOME}/.virtualenv
 
 # Powerlevel9k theme customizations
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs kubecontext)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time vi_mode)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_VI_INSERT_MODE_STRING=""
 POWERLEVEL9K_VI_COMMAND_MODE_STRING="<<<"
@@ -76,7 +76,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 #
 # System plugins
-plugins=(colored-man-pages vi-mode)
+plugins=(colored-man-pages)
 # Programming plugins
 plugins+=(git npm virtualenvwrapper golang)
 # Container/DevOps plugins
@@ -123,6 +123,9 @@ fi
 # Command line customizations
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^R' history-incremental-search-backward
+
+bindkey '^[b' backward-word
+bindkey '^[f' forward-word
 
 # Do not share history across prompts
 unsetopt sharehistory
