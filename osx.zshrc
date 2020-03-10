@@ -80,7 +80,7 @@ plugins=(colored-man-pages)
 # Programming plugins
 plugins+=(git npm virtualenvwrapper golang)
 # Container/DevOps plugins
-plugins+=(docker kubectl)
+plugins+=(docker kubectl terraform)
 # Mac OS X plugins
 plugins+=(osx brew)
 
@@ -129,3 +129,6 @@ bindkey '^[f' forward-word
 
 # Do not share history across prompts
 unsetopt sharehistory
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /Users/treedy/homebrew/bin/terraform terraform
