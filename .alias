@@ -9,8 +9,10 @@ alias dprune='docker images prune'
 alias drmidangle='docker rmi $(docker images -f "dangling=true" -q)'
 
 # Terraform aliases
+alias tf='terraform'
 alias tfa='terraform apply'
 alias tfd='terraform destroy'
 alias tff='terraform fmt'
 alias tfi='terraform init'
 alias tfp='terraform plan'
+alias yytfa='yes yes | tfa'
