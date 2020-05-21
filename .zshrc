@@ -82,7 +82,6 @@ plugins+=(git npm golang)
 # Container/DevOps plugins
 plugins+=(docker kubectl)
 
-source ${HOME}/google-cloud-sdk/*.zsh.inc
 PATH=$HOME/google-cloud-sdk/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
