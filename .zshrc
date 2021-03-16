@@ -1,4 +1,4 @@
-PATH=$HOME/bin:$HOME/google-cloud-sdk/bin
+PATH=$HOME/bin:$HOME/google-cloud-sdk/bin:$HOME/go/bin
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Path to your oh-my-zsh installation.
@@ -108,6 +108,9 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 if [ -r ${HOME}/.alias ]; then
   source ${HOME}/.alias
 fi
+if [ -d ${HOME}/.alias.d ]; then
+  source ${HOME}/.alias.d/*.alias
+fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then
@@ -123,3 +126,4 @@ bindkey '^[f' forward-word
 
 # Do not share history across prompts
 unsetopt sharehistory
+TZ='America/New_York'; export TZ
