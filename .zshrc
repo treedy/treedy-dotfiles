@@ -1,9 +1,17 @@
-PATH=$HOME/bin:$HOME/google-cloud-sdk/bin:$HOME/go/bin
+PATH=$HOME/bin:$HOME/google-cloud-sdk/bin:$HOME/go/bin:$HOME/.local/bin
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Python virtualenv support
+if [ -f $HOME/.local/bin/virtualenvwrapper.sh ]; then
+  export WORKON_HOME=${HOME}/.virtualenv
+  export PROJECT_HOME=$HOME/workspace
+  export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+  export VIRTUALENVWRAPPER_WORKON_CD=1
+  source $HOME/.local/bin/virtualenvwrapper.sh
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
-export WORKON_HOME=${HOME}/.virtualenv
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -12,7 +20,7 @@ export WORKON_HOME=${HOME}/.virtualenv
 # ZSH_THEME="candy"
 
 # Powerlevel9k theme customizations
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs kubecontext)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv context dir vcs kubecontext)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_VI_INSERT_MODE_STRING=""
@@ -82,8 +90,6 @@ plugins+=(git npm golang)
 # Container/DevOps plugins
 plugins+=(docker kubectl)
 
-PATH=$HOME/google-cloud-sdk/bin:$PATH
-
 source $ZSH/oh-my-zsh.sh
 # User configuration
 
@@ -127,3 +133,6 @@ bindkey '^[f' forward-word
 # Do not share history across prompts
 unsetopt sharehistory
 TZ='America/New_York'; export TZ
+
+# Load command completions
+autoload -U compinit && compinit
