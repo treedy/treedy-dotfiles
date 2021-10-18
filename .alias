@@ -13,8 +13,10 @@ alias tfa='terraform apply'
 alias tfd='terraform destroy'
 alias tff='terraform fmt'
 alias tfi='terraform init'
+alias tfo='terraform output'
 alias tfp='terraform plan'
-alias yytfa='yes yes | terraform apply'
+alias yytfa='terraform apply -auto-approve'
+alias tfaa='terraform apply -auto-approve'
 
 # GCP mount
 alias mount_cloudshell='$(gcloud alpha cloud-shell get-mount-command ~/remote_mount)'
