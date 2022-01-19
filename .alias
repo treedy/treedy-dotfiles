@@ -23,3 +23,6 @@ alias mount_cloudshell='$(gcloud alpha cloud-shell get-mount-command ~/remote_mo
 
 # SCP to GCP Cloud Shell
 alias scp2cs='gcloud beta cloud-shell scp'
+
+# A `cat` upgrade from https://github.com/sharkdp/bat
+alias bat='batcat'
