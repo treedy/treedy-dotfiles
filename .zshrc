@@ -154,8 +154,7 @@ export NVM_DIR="$HOME/.nvm"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# In WSL, start some services, may need to remove for Win11
-if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
-  sudo service restart user@1000
-  sudo service ssh start
+# Load z for directory jumping
+if [ -f  ${HOME}/bin/z/z.sh ]; then
+  . ${HOME}/bin/z/z.sh
 fi
