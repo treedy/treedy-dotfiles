@@ -10,6 +10,11 @@ PATH=$PATH:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin
 PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+function executable_exists() {
+  which "$1" >/dev/null 2>&1
+  return $?
+}
+
 # Python virtualenv support
 if [ -f $HOME/.local/bin/virtualenvwrapper.sh ]; then
   export WORKON_HOME=${HOME}/.virtualenv
@@ -108,7 +113,13 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='vim'
+if executable_exists nvim; then
+  export EDITOR='nvim'
+elif executable_exists vim; then
+  export EDITOR='vim'
+else
+  export EDITOR='vi'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
