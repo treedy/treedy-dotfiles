@@ -169,3 +169,5 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f  ${HOME}/bin/z/z.sh ]; then
   . ${HOME}/bin/z/z.sh
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
