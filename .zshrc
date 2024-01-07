@@ -98,12 +98,13 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 #
 # System plugins
-plugins=(colored-man-pages)
+plugins=(colored-man-pages tmux)
 # Programming plugins
 plugins+=(git npm golang)
 # Container/DevOps plugins
 plugins+=(docker kubectl)
 
+ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
 # User configuration
 
