@@ -144,6 +144,10 @@ if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then
   source "${HOME}/google-cloud-sdk/completion.zsh.inc"
 fi
 
+if executable_exists aws; then  # Load the auto-completion script
+  complete -C '/usr/local/bin/aws_completer' aws
+fi
+
 # Command line customizations
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^R' history-incremental-search-backward
@@ -156,7 +160,8 @@ unsetopt sharehistory
 TZ='America/New_York'; export TZ
 
 # Load command completions
-autoload -U compinit && compinit
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
