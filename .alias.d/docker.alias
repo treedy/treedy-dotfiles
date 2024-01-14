@@ -1,0 +1,5 @@
+# Docker aliases
+alias dpsa='docker ps -a'
+alias dps='docker ps'
+alias dprune='docker images prune'
+alias drmidangle='docker rmi $(docker images -f "dangling=true" -q)'

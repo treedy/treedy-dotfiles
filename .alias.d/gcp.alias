@@ -1,0 +1,5 @@
+# Mount Cloud Shell file system
+alias mount_cloudshell='$(gcloud alpha cloud-shell get-mount-command ~/remote_mount)'
+
+# SCP to GCP Cloud Shell
+alias scp2cs='gcloud beta cloud-shell scp'

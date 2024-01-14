@@ -8,21 +8,9 @@ alias dps='docker ps'
 alias dprune='docker images prune'
 alias drmidangle='docker rmi $(docker images -f "dangling=true" -q)'
 
-# Terraform aliases
-alias tfa='terraform apply'
-alias tfd='terraform destroy'
-alias tff='terraform fmt'
-alias tfi='terraform init'
-alias tfo='terraform output'
-alias tfp='terraform plan'
-alias yytfa='terraform apply -auto-approve'
-alias tfaa='terraform apply -auto-approve'
-
-# GCP mount
-alias mount_cloudshell='$(gcloud alpha cloud-shell get-mount-command ~/remote_mount)'
-
-# SCP to GCP Cloud Shell
-alias scp2cs='gcloud beta cloud-shell scp'
 
 # A `cat` upgrade from https://github.com/sharkdp/bat
-alias bat='batcat'
+if executable_exists batcat; then # executable_exists is defined in ~/.zshrc
+  alias bat='batcat'
+  alias cat='batcat'
+fi
