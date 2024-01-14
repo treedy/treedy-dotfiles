@@ -135,9 +135,9 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 if [ -r ${HOME}/.alias ]; then
   source ${HOME}/.alias
 fi
-if [ -d ${HOME}/.alias.d ]; then
-  source ${HOME}/.alias.d/*.alias
-fi
+for alias_file in  ${HOME}/.alias.d/*.alias; do
+  source "${alias_file}"
+done
 
 # The next line enables shell command completion for gcloud.
 if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then
