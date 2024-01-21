@@ -148,6 +148,10 @@ if executable_exists aws; then  # Load the auto-completion script
   complete -C '/usr/local/bin/aws_completer' aws
 fi
 
+if executable_exists terraform; then  # Load the auto-completion script
+  complete -o nospace -C '/usr/bin/terraform' terraform
+fi
+
 # Command line customizations
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^R' history-incremental-search-backward
