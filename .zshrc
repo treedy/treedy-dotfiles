@@ -139,6 +139,10 @@ for alias_file in  ${HOME}/.alias.d/*.alias; do
   source "${alias_file}"
 done
 
+# Load command completions
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+
 # The next line enables shell command completion for gcloud.
 if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then
   source "${HOME}/google-cloud-sdk/completion.zsh.inc"
@@ -162,10 +166,6 @@ bindkey '^[f' forward-word
 # Do not share history across prompts
 unsetopt sharehistory
 TZ='America/New_York'; export TZ
-
-# Load command completions
-autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
