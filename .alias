@@ -7,3 +7,6 @@ if executable_exists batcat; then # executable_exists is defined in ~/.zshrc
   alias bat='batcat'
   alias cat='batcat'
 fi
+if executable_exists bat; then
+  alias cat='bat'
+fi
