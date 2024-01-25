@@ -6,7 +6,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 PATH=$HOME/bin:$HOME/google-cloud-sdk/bin:$HOME/go/bin:$HOME/.local/bin
-PATH=$PATH:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin
+OS_ID=$(/usr/bin/uname)
+rust_path="stable-x86_64-unknown-linux-gnu"
+if [ "$OS_ID" = "Darwin" ] ; then
+  rust_path="stable-aarch64-apple-darwin"
+fi
+
+PATH=$PATH:$HOME/.rustup/toolchains/${rust_path}/bin
 PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
@@ -14,6 +20,12 @@ function executable_exists() {
   which "$1" >/dev/null 2>&1
   return $?
 }
+
+# Homebrew env
+BREWLOC="${HOME}/bin/homebrew/bin/brew"
+if [ -f "$BREWLOC" ]; then
+  eval $($BREWLOC shellenv)
+fi
 
 # Python virtualenv support
 if [ -f $HOME/.local/bin/virtualenvwrapper.sh ]; then
