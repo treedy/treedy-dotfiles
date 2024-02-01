@@ -28,12 +28,12 @@ if [ -f "$BREWLOC" ]; then
 fi
 
 # Python virtualenv support
-if [ -f $HOME/.local/bin/virtualenvwrapper.sh ]; then
+if executable_exists virtualenvwrapper.sh; then
   export WORKON_HOME=${HOME}/.virtualenv
   export PROJECT_HOME=$HOME/workspace
   export VIRTUALENVWRAPPER_PYTHON=$(which python3)
   export VIRTUALENVWRAPPER_WORKON_CD=1
-  source $HOME/.local/bin/virtualenvwrapper.sh
+  source virtualenvwrapper.sh
 fi
 
 # Path to your oh-my-zsh installation.
