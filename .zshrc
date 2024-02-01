@@ -22,7 +22,7 @@ function executable_exists() {
 }
 
 # Homebrew env
-BREWLOC="${HOME}/bin/homebrew/bin/brew"
+BREWLOC="/opt/homebrew/bin/brew"
 if [ -f "$BREWLOC" ]; then
   eval $($BREWLOC shellenv)
 fi
