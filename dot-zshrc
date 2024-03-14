@@ -7,13 +7,16 @@ fi
 
 PATH=$HOME/bin:$HOME/google-cloud-sdk/bin:$HOME/go/bin:$HOME/.local/bin
 OS_ID=$(/usr/bin/uname)
+
+# Path to Rust and Cargo
 rust_path="stable-x86_64-unknown-linux-gnu"
 if [ "$OS_ID" = "Darwin" ] ; then
   rust_path="stable-aarch64-apple-darwin"
 fi
+PATH=$PATH:$HOME/.rustup/toolchains/${rust_path}/bin:$HOME/.cargo/bin
 
-PATH=$PATH:$HOME/.rustup/toolchains/${rust_path}/bin
-PATH=$PATH:$HOME/.cargo/bin
+# Path to Rye (Python virtualenv manager, rye-up.com)
+PATH=$PATH:$HOME/.rye/shims
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 function executable_exists() {
@@ -169,3 +172,14 @@ if [ -f  ${HOME}/bin/z/z.sh ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if executable_exists thefuck; then
+  eval $(thefuck --alias f)
+fi
+
+if executable_exists pipenv; then
+  eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
+fi
+
+# Set up Rye environment
+[ -f ~/.rye/env ] && source ~/.rye/env
