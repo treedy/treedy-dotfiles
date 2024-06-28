@@ -1,9 +1,11 @@
 # Terraform aliases
+alias tf='terraform'
 alias tfa='terraform apply'
 alias tfd='terraform destroy'
 alias tff='terraform fmt'
 alias tfi='terraform init'
 alias tfo='terraform output'
 alias tfp='terraform plan'
+alias tfw='terraform workspace'
 alias yytfa='terraform apply -auto-approve'
 alias tfaa='terraform apply -auto-approve'
