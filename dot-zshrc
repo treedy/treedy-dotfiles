@@ -148,12 +148,19 @@ if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then
   source "${HOME}/google-cloud-sdk/completion.zsh.inc"
 fi
 
-if executable_exists aws; then  # Load the auto-completion script
-  complete -C '/usr/local/bin/aws_completer' aws
+# Load AWS auto-completion
+if executable_exists aws_completer; then
+  complete -C $(which aws_completer) aws
 fi
 
-if executable_exists terraform; then  # Load the auto-completion script
-  complete -o nospace -C '/usr/bin/terraform' terraform
+# Load Azure auto-completion
+if isDarwin && executable_exists az; then
+  source $(brew --prefix)/etc/bash_completion.d/az
+fi
+
+# Load Terraform auto-completion
+if executable_exists terraform; then
+  complete -o nospace -C $(which terraform) terraform
 fi
 
 # Command line customizations
@@ -175,9 +182,8 @@ export NVM_DIR="$HOME/.nvm"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Load z for directory jumping
-if [ -f  ${HOME}/bin/z/z.sh ]; then
-  . ${HOME}/bin/z/z.sh
+if executable_exists zoxide; then
+  eval "$(zoxide init zsh)"
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
