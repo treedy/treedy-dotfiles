@@ -103,7 +103,7 @@ plugins+=(git npm golang)
 # Container/DevOps plugins
 plugins+=(docker kubectl)
 
-ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=false
 source $ZSH/oh-my-zsh.sh
 # User configuration
 
@@ -139,6 +139,7 @@ for alias_file in  ${HOME}/.alias.d/*.alias; do
 done
 
 # Load command completions
+export fpath=(${HOME}/.zfunc $fpath)
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
