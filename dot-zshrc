@@ -33,8 +33,13 @@ function executable_exists() {
 }
 
 # Homebrew env
-BREWLOC="/opt/homebrew/bin/brew"
+if [ isDarwin = true ] ; then
+  BREWLOC="/opt/homebrew/bin/brew"
+else
+  BREWLOC="/home/linuxbrew/.linuxbrew/bin/brew"
+fi
 if [ -f "$BREWLOC" ]; then
+  # Sets path to `brew` and enables autocomplete
   eval $($BREWLOC shellenv)
 fi
 
