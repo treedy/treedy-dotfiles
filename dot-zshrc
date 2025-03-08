@@ -116,9 +116,9 @@ HIST_STAMPS="yyyy-mm-dd"
 # System plugins
 plugins=(colored-man-pages tmux zsh-vi-mode)
 # Programming plugins
-plugins+=(git npm golang)
+plugins+=(git npm)
 # Container/DevOps plugins
-plugins+=(docker kubectl)
+plugins+=(docker kubectl podman)
 
 ZSH_TMUX_AUTOSTART=false
 source $ZSH/oh-my-zsh.sh
@@ -181,7 +181,6 @@ if executable_exists terraform; then
 fi
 
 # Command line customizations
-bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^R' history-incremental-search-backward
 
 bindkey '^[b' backward-word
