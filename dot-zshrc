@@ -52,6 +52,18 @@ if executable_exists virtualenvwrapper.sh; then
   source virtualenvwrapper.sh
 fi
 
+# ZVM_Mode settings
+# See https://github.com/jeffreytse/zsh-vi-mode
+
+function _zvm_after_init() {
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
+
+function zvm_config() {
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+  zvm_after_init_commands+=(_zvm_after_init)
+}
+
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
 
@@ -102,7 +114,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 #
 # System plugins
-plugins=(colored-man-pages tmux)
+plugins=(colored-man-pages tmux zsh-vi-mode)
 # Programming plugins
 plugins+=(git npm golang)
 # Container/DevOps plugins

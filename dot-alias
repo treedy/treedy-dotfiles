@@ -10,3 +10,7 @@ fi
 if executable_exists bat; then
   alias cat='bat'
 fi
+
+if executable_exists nvim; then
+  alias vim='nvim'
+fi
