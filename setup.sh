@@ -4,6 +4,18 @@ backup_file() {
   mv ${HOME}/$1 ${HOME}/$1.backup
 }
 
+# Install applications
+## Apt apps from `dpkg --get-selections`
+sudo dpkg --set-selections < ./dpkg.selections
+sudo apt-get deselect-upgrade
+
+## Install Brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+## Install Brew packages
+### Created from `brew bundle dump --file=Brewfile`
+brew bundle --file=./Brewfile
+
 # https://www.gnu.org/software/stow/manual/stow.html#
 if ! which stow >/dev/null 2>&1; then
   echo "Please install 'stow'"
@@ -18,12 +30,6 @@ if ! which zsh >/dev/null 2>&1; then
   read -s -k '?Press any key to continue.'
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
-
-# Backup existing dot files
-for dotfile in dot-*; do 
-  dname="${dotfile/#dot-/.}"
-  backup_file "${dname}"
-done
 
 # Link all the dotfiles to ~
 stow --dotfiles -t ${HOME} .
@@ -41,9 +47,7 @@ echo -e "${BLUE}To configure Vim, run the following commands:"
 echo "git clone https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim"
 echo "vim +PluginInstall +qa"
 echo 
-echo "To install NeoVim <version>, run the following commands:"
-echo "wget https://github.com/neovim/neovim/releases/download/<version>/nvim.appimage -O ${HOME}/bin/nvim"
-echo "chmod +x ${HOME}/bin/nvim"
+echo "To configure NeoVim <version>, run the following commands:"
 echo "git clone git@github.com:treedy/kickstart.nvim.git ~/.config/nvim"
 echo "cd ~/.config/nvim && git checkout personal"
 echo
