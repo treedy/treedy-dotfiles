@@ -56,7 +56,7 @@ fi
 # See https://github.com/jeffreytse/zsh-vi-mode
 
 function _zvm_after_init() {
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  source <(fzf --zsh)
 }
 
 function zvm_config() {
@@ -201,8 +201,6 @@ export NVM_DIR="$HOME/.nvm"
 if executable_exists zoxide; then
   eval "$(zoxide init zsh)"
 fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if executable_exists thefuck; then
   eval $(thefuck --alias f)
