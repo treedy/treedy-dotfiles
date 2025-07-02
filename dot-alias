@@ -2,13 +2,16 @@ alias ll='ls -lFA'
 alias lh='ll -h'
 alias vi='vi -u NONE'
 
+alias more='less'
 # A `cat` upgrade from https://github.com/sharkdp/bat
 if executable_exists batcat; then # executable_exists is defined in ~/.zshrc
   alias bat='batcat'
   alias cat='batcat'
+  alias less='batcat'
 fi
 if executable_exists bat; then
   alias cat='bat'
+  alias less='bat'
 fi
 
 if executable_exists nvim; then
